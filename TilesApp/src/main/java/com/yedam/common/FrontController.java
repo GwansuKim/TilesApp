@@ -1,20 +1,15 @@
 package com.yedam.common;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yedam.notice.command.NoticeAddControl;
-import com.yedam.notice.command.NoticeDetailControl;
-import com.yedam.notice.command.NoticeListControl;
-import com.yedam.notice.command.NoticeAddFormControl;
+import com.yedam.member.command.*;
+import com.yedam.notice.command.*;
 
 public class FrontController extends HttpServlet{
 
@@ -33,8 +28,22 @@ public class FrontController extends HttpServlet{
 		map.put("/second.do", new SecondControl());
 		map.put("/noticeList.do", new NoticeListControl());
 		map.put("/noticeDetail.do", new NoticeDetailControl());
-		map.put("/NoticeAddForm.do", new NoticeAddFormControl());
+		map.put("/noticeAddForm.do", new NoticeAddFormControl());
 		map.put("/noticeAdd.do", new NoticeAddControl());
+		
+		// 댓글
+		map.put("/replyList.do", new ReplyListControl());
+		map.put("/removeReply.do", new RemoveReplyControl());
+		map.put("/addReply.do", new AddReplyControl());
+		
+		// 회원관련
+		map.put("/logInForm.do", new LogInFormControl());
+		map.put("/logIn.do", new LogInControl());
+		map.put("/logOut.do", new LogOutControl());
+		map.put("/signOnForm.do", new SignOnFormControl());
+		map.put("/signOn.do", new SignOnControl());
+		map.put("/myPage.do", new MyPageControl());
+		map.put("/modMember.do", new ModMemberControl());
 	}
 	
 	@Override
@@ -54,6 +63,9 @@ public class FrontController extends HttpServlet{
 			rd.forward(req, resp);
 		} else if(viewPage.endsWith(".do")) {
 			resp.sendRedirect(viewPage);
+		} else if(viewPage.endsWith(".json")) {
+			resp.setContentType("text/json;charset=utf-8");
+			resp.getWriter().print(viewPage.substring(0, viewPage.length() - 5));
 		}
 	}
 }
