@@ -27,10 +27,11 @@
 						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
 						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">Dropdown</a>
-						<div class="dropdown-menu dropdown-menu-end"
-							aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#!">Action</a> <a
-								class="dropdown-item" href="#!">Another action</a>
+						<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+							<c:if test="${Auth == 'admin' }">
+								<a class="dropdown-item" href="memberManagerForm.do">회원 관리</a>
+							</c:if>
+							<a class="dropdown-item" href="#!">Another action</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#!">Something else here</a>
 						</div></li>

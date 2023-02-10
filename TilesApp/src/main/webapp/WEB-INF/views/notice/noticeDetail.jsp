@@ -2,7 +2,7 @@
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"
 prefix="fmt" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<h3>현재 페이지는 noticeDetail.do의 결과 noticeDetail.jsp입니다</h3>
+<h3>현재 페이지는 noticeDetail.do의 결과 noticeDetail.jsp입니다</h3><input type="file" id ="fileUpload" accept="image/*" style="display: none">
 <table class="table">
   <tr>
     <th>글번호</th>
@@ -33,6 +33,7 @@ prefix="fmt" %>
     </td>
   </tr>
 </table>
+</form>
 <br />
 <table class="table">
   <thead>

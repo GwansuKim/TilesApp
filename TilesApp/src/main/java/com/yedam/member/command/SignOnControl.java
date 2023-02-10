@@ -2,11 +2,15 @@ package com.yedam.member.command;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.yedam.common.Command;
@@ -30,9 +34,16 @@ public class SignOnControl implements Command {
 			MultipartRequest multi = new MultipartRequest(req, savePath, maxSize, encoding, new DefaultFileRenamePolicy());
 			
 			String id = multi.getParameter("member_id");
-			String pw = multi.getParameter("member_pw");
+			String pw = "";
+			if(multi.getParameter("member_pw") == null) {
+				pw = id;
+			} else {
+				pw = multi.getParameter("member_pw");
+			}
 			String nm = multi.getParameter("member_name");
 			String ph = multi.getParameter("member_phone");
+			String ad = multi.getParameter("member_addr");
+			String from = multi.getParameter("from");
 			String fileName = "";
 			
 			Enumeration<?> files = multi.getFileNames();
@@ -46,15 +57,34 @@ public class SignOnControl implements Command {
 			member.setMemberPw(pw);
 			member.setMemberName(nm);
 			member.setMemberPhone(ph);
+			member.setMemberAddr(ad);
 			member.setImage(fileName);
+			member.setResponsibility("user");
 			
 			MemberService service = new MemberServiceMybatis();
-			if(service.addMember(member)>0) {
-				return "main/logIn.tiles";
+			
+			Map<String, Object> resultMap = new HashMap<>();
+			resultMap.put("member", member);
+			Gson gson = new GsonBuilder().create();
+			
+			if(from.equals("manager")) {
+				if (service.addMember(member) > 0) {
+					resultMap.put("retCode", "Success");
+					// return "{\"retCode\": \"Success\"}.json";}
+				} else {
+					resultMap.put("retCode", "Fail");
+					// return "{\"retCode\": \"Fail\"}.json";
+				}
+				return gson.toJson(resultMap) + ".json";
 			} else {
-				req.setAttribute("result", "처리중 오류 발생!");
-				return "main/signon.tiles";
+				if(service.addMember(member)>0) {
+					return "main/logIn.tiles";
+				} else {
+					req.setAttribute("result", "처리중 오류 발생!");
+					return "main/signon.tiles";
+				}	
 			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

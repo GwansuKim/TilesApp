@@ -10,4 +10,5 @@ public interface MemberMapper {
 	public List<MemberVO> memberList();
 	public MemberVO getMember(String id);
 	public int updMember(MemberVO member);
+	public int deleteMember(String mid);
 }

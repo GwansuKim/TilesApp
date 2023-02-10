@@ -10,4 +10,5 @@ public interface MemberService {
 	public List<MemberVO> memberList();
 	public MemberVO getMember(String id);
 	public int modMember(MemberVO member);
+	public int removeMember(String mid);
 }

@@ -29,12 +29,12 @@ public class LogInControl implements Command {
 		MemberVO rvo = service.login(vo);
 		
 		if(rvo != null) {
-			
 			HttpSession session = req.getSession();
 			
 			session.setAttribute("vo", rvo);
 			session.setAttribute("id", rvo.getMemberId());
-			session.setAttribute("name", rvo.getMemberName());
+			session.setAttribute("img", rvo.getImage());
+			session.setAttribute("Auth", rvo.getResponsibility());
 			return "main/myPage.tiles";
 		} else {
 			req.setAttribute("result", "회원정보를 확인하세요!!");

@@ -17,12 +17,31 @@
 	<select id="getMember" resultType="MemberVO" parameterType="string">
 		select * from members where member_id=#{id}
 	</select>
-	<update id="updMember" parameterType="com.yedam.member.vo.MemberVO">
+	<update id="updMember" parameterType="MemberVO">
 		UPDATE members
-		   SET member_pw=#{memberPw},
-		   	   member_name=#{memberName},
-		   	   member_phone=#{memberPhone},
-		   	   member_addr=#{memberAddr}
+		   <set>
+			   <if test="image != null">
+			   	   image = #{image},
+			   </if>
+			   <if test="memberPw != null">
+			   	   member_pw=#{memberPw},
+			   </if>
+			   <if test="memberName != null">
+			   	   member_name=#{memberName},
+			   </if>
+			   <if test="memberPhone != null">
+			   	   member_phone=#{memberPhone},
+			   </if>
+			   <if test="memberAddr != null">
+			   	   member_addr=#{memberAddr},
+			   </if>
+			   <if test="responsibility != null">
+			   	   responsibility=#{responsibility},
+			   </if>
+		   </set>
 		 WHERE member_id=#{memberId}
 	</update>
+	<delete id="deleteMember" parameterType="string">
+		delete members where member_id=#{mid}
+	</delete>
 </mapper>
