@@ -12,7 +12,7 @@ public class NoticeServiceImpl implements NoticeService {
 	SqlSession session = DataSource.getInstance().openSession(true);
 	NoticeMapper mapper = session.getMapper(NoticeMapper.class);
 	// NoticeService service = new NoticeServiceImpl();
-	// session.selectOne("com.yedam.notice.mapper.NoticeMapper.getNotice
+	// session.selectOne("com.yedam.notice.mapper.NoticeMapper.getNotice")
 
 	@Override
 	public List<NoticeVO> noticeList() {
