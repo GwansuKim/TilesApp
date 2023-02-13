@@ -27,9 +27,13 @@ public class FrontController extends HttpServlet{
 		map.put("/main.do", new MainControl());
 		map.put("/second.do", new SecondControl());
 		map.put("/noticeList.do", new NoticeListControl());
+		map.put("/noticeListWithTables.do", new NoticeListWithTablesControl());
 		map.put("/noticeDetail.do", new NoticeDetailControl());
 		map.put("/noticeAddForm.do", new NoticeAddFormControl());
 		map.put("/noticeAdd.do", new NoticeAddControl());
+		map.put("/noticeAddJson.do", new NoticeAddJson());
+		map.put("/noticeListJson.do", new NoticeListJson());
+		map.put("/noticeListAjax.do", new NoticeAjax());
 		
 		// 댓글
 		map.put("/replyList.do", new ReplyListControl());
