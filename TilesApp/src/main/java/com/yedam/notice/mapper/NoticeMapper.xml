@@ -10,8 +10,11 @@
     SELECT * FROM tbl_notice WHERE notice_id=#{nid}
   </select>
   <insert id="insertNotice" parameterType="NoticeVO">
+  	<selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
+  		select notice_seq.nextval from dual
+	</selectKey>
 	INSERT INTO tbl_notice(notice_id, notice_writer, notice_title,notice_subject, attach_file)
-	VALUES(notice_seq.nextval,#{noticeWriter},#{noticeTitle},#{noticeSubject},#{attachFile})
+	VALUES(#{noticeId},#{noticeWriter},#{noticeTitle},#{noticeSubject},#{attachFile})
   </insert>
   <update id="updateNotice" parameterType="NoticeVO">
   	UPDATE tbl_notice
@@ -27,4 +30,17 @@
   	SET	   hit_count = hit_count + 1
   	WHERE  notice_id=#{nId}
   </update>
+  <select id="replyList" resultType="ReplyVO">
+    SELECT * FROM tbl_reply WHERE notice_id=#{nid} ORDER BY reply_id
+  </select>
+  <delete id="deleteReply" parameterType="int">
+  	DELETE FROM tbl_reply where reply_id=#{rid}
+  </delete>
+  <insert id="insertReply" parameterType="ReplyVO">
+  	<selectKey keyProperty="replyId" resultType="int" order="BEFORE">
+  		select reply_seq.nextval from dual
+  	</selectKey>
+	insert into tbl_reply(reply_id, notice_id, reply_title, reply_subject, reply_writer, reply_date)
+	values(#{replyId}, #{noticeId}, #{replyTitle}, #{replySubject}, #{replyWriter}, #{replyDate})
+  </insert>
 </mapper>

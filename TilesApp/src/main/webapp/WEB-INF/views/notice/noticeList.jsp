@@ -29,11 +29,11 @@
 		</c:forEach>
 	</tbody>
 </table>
-<div class="center">
-	<button id="addBtn">글등록</button>
-</div>
-<script>
-	document.getElementById('addBtn').addEventListener('click', function() {
-		location.href = "NoticeAddForm.do";
-	})
-</script>
+<!-- <div class="center"> -->
+<!-- 	<button id="addBtn">글등록</button> -->
+<!-- </div> -->
+<!-- <script>
+ 	document.getElementById('addBtn').addEventListener('click', function() {
+ 		location.href = "NoticeAddForm.do";
+ 	})
+</script> -->

@@ -22,6 +22,8 @@
 
 <tiles:insertAttribute name="body"></tiles:insertAttribute>   
 
+<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+
 </div>
 </div>
         <!-- Bootstrap core JS-->
