@@ -35,6 +35,8 @@ public class FrontController extends HttpServlet{
 		map.put("/noticeListJson.do", new NoticeListJson());
 		map.put("/noticeListAjax.do", new NoticeAjax());
 		
+		map.put("/temp.do", new TempControl());
+		
 		// 댓글
 		map.put("/replyList.do", new ReplyListControl());
 		map.put("/removeReply.do", new RemoveReplyControl());

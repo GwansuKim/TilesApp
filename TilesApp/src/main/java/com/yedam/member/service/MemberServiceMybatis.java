@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.yedam.common.DataSource;
 import com.yedam.member.mapper.MemberMapper;
 import com.yedam.member.vo.MemberVO;
+import com.yedam.notice.vo.PagingUtil;
 
 public class MemberServiceMybatis implements MemberService {
 	SqlSession session = DataSource.getInstance().openSession(true);
@@ -40,6 +41,11 @@ public class MemberServiceMybatis implements MemberService {
 	@Override
 	public int removeMember(String mid) {
 		return mapper.deleteMember(mid);
+	}
+
+	@Override
+	public PagingUtil getTotal() {
+		return mapper.getTotal();
 	}
 	
 }

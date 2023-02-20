@@ -5,8 +5,10 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
+import com.yedam.member.vo.MemberVO;
 import com.yedam.notice.mapper.NoticeMapper;
 import com.yedam.notice.vo.NoticeVO;
+import com.yedam.notice.vo.PagingUtil;
 import com.yedam.notice.vo.ReplyVO;
 
 public class NoticeServiceImpl implements NoticeService {
@@ -54,6 +56,16 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int addReply(ReplyVO reply) {
 		return mapper.insertReply(reply);
+	}
+
+	@Override
+	public PagingUtil getTotal() {
+		return mapper.getTotal();
+	}
+
+	@Override
+	public List<MemberVO> selectBoardList(NoticeVO notice) {
+		return mapper.selectBoardList(notice);
 	}
 
 }

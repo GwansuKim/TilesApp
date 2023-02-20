@@ -2,7 +2,9 @@ package com.yedam.notice.service;
 
 import java.util.List;
 
+import com.yedam.member.vo.MemberVO;
 import com.yedam.notice.vo.NoticeVO;
+import com.yedam.notice.vo.PagingUtil;
 import com.yedam.notice.vo.ReplyVO;
 
 public interface NoticeService {
@@ -17,4 +19,8 @@ public interface NoticeService {
 	public List<ReplyVO> replyList(int nid);
 	//댓글 삭제
 	public int remReply(int rid);
+	
+	
+	public PagingUtil getTotal();
+	public List<MemberVO> selectBoardList(NoticeVO notice);
 }

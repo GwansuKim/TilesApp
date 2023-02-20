@@ -13,6 +13,29 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            .pagination {
+              display: inline-block;
+            }
+            
+            .pagination a {
+              color: black;
+              float: left;
+              padding: 8px 16px;
+              text-decoration: none;
+              transition: background-color .3s;
+              border: 1px solid #ddd;
+              margin: 0 4px;
+            }
+            
+            .pagination a.active {
+              background-color: #4CAF50;
+              color: white;
+              border: 1px solid #4CAF50;
+            }
+            
+            .pagination a:hover:not(.active) {background-color: #ddd;}
+            </style>
     </head>
     <body>
 
@@ -21,8 +44,6 @@
 <tiles:insertAttribute name="header"></tiles:insertAttribute>  
 
 <tiles:insertAttribute name="body"></tiles:insertAttribute>   
-
-<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 
 </div>
 </div>

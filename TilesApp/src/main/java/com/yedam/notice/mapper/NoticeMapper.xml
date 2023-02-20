@@ -43,4 +43,23 @@
 	insert into tbl_reply(reply_id, notice_id, reply_title, reply_subject, reply_writer, reply_date)
 	values(#{replyId}, #{noticeId}, #{replyTitle}, #{replySubject}, #{replyWriter}, #{replyDate})
   </insert>
+  <select id="getTotal" resultType="com.yedam.notice.vo.PagingUtil">
+	select COUNT(*) AS "listCnt" from notice
+  </select>
+  <select id="selectBoardList" resultType="NoticeVO">
+  	SELECT *
+  	  FROM ( SELECT ROWNUM RN
+  	              , notice_id
+  	              , notice_writer
+  	              , notice_title
+  	              , notice_subject
+  	              , notice_date
+  	              , hit_count
+  	              , attach_file
+			  FROM (SELECT * 
+					FROM notice 
+					ORDER BY notice_id DESC)
+			) notice
+	WHERE notice.RN BETWEEN #{startIndex} AND #{lastIndex}
+  </select>
 </mapper>

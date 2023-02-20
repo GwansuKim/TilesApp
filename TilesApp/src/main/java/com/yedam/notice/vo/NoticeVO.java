@@ -13,4 +13,11 @@ public class NoticeVO {
     private Date noticeDate;
     private int hitCount;
     private String attachFile;
+	private int startIndex;
+	private int	pageSize;
+	private int lastIndex;
+	
+	public void setLastIndex(int start, int size) {
+		this.lastIndex = startIndex + pageSize -1;
+	}
 }

@@ -37,7 +37,7 @@
 			   </if>
 			   <if test="responsibility != null">
 			   	   responsibility=#{responsibility},
-			   </if>
+			   </if>s
 		   </set>
 		 WHERE member_id=#{memberId}
 	</update>
